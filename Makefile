@@ -1,5 +1,5 @@
 TARGET = THE_CITY_NO_SIGNAL
-OBJS = src/main.o
+OBJS = main.o
 INCDIR =
 CFLAGS = -O2 -G0 -Wall
 CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
