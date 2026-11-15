@@ -1,0 +1,28 @@
+name: Build PSP EBOOT
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: pspdev/pspdev:latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile EBOOT.PBP
+        run: |
+          make clean || true
+          make
+
+      - name: Verify output
+        run: ls -lh EBOOT.PBP
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: THE-CITY-NO-SIGNAL-EBOOT
+          path: EBOOT.PBP
+          if-no-files-found: error
